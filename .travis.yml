@@ -1,0 +1,19 @@
+# 指定执行脚本的分支
+branches:
+  only:
+  - master
+# - gh-pages
+# - docs
+# 指定语言环境
+jdk: openjdk10
+script:
+  - jdk_switcher use openjdk10
+  - # do stuff with OpenJDK 10
+  - export JAVA_HOME=$HOME/openjdk11
+  - $TRAVIS_BUILD_DIR/install-jdk.sh --install openjdk11 --target $JAVA_HOME
+  - # do stuff with open OpenJDK 11
+
+# Start: Build Lifecycle
+
+
+# End: Build LifeCycle
