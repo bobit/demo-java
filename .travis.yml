@@ -1,5 +1,6 @@
 language: java
-
+  # 指定需要sudo权限
+  sudo: required
   jdk:
   - openjdk8
 
