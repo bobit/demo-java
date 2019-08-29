@@ -1,4 +1,5 @@
 # demo-spring-template
+[![Build Status](https://travis-ci.org/bobit/demo-java.svg?branch=master)](https://travis-ci.org/bobit/demo-java)
 
 ```
 language: java
