@@ -1,19 +1,25 @@
-# 指定执行脚本的分支
-branches:
-  only:
-  - master
-# - gh-pages
-# - docs
-# 指定语言环境
-jdk: openjdk10
+language: java
+sudo: false
+install: true
+
+addons:
+  sonarcloud:
+    organization: "bobit"
+    token:
+      secure: "jCe1bGGbx0kwEDy9PDcXBlX5YAkjbEX2moL93L8U+UwkmDRbilsSQQYKQtzgUJ4drUU8g0BJywndUBcR0DSF1dW9YjPGgazCrCbiSimXy3IFMwLI5kU2BnJXTHzcQDJDxWr4P5UttL1KsXi72dRTmeTa9XvXckTCkggAPsprTTA/aurYBuh5C8JbK3WKLwctEmC8RcYLg92cK9H09493h+Txk/jmRoS9wisXwPEbJu5+XspUOgBfrfGYMhKs+cJfaIJs7nRdb7nu65opb+SfgiFurYpKKQ1VJuJp9VAHlQ3Uu6XxItDq4Q0wSHI9an5QjzFuQNxsBORTvB6R99PZlgcAtV6jWRRUhn7QKh+7ibviBcKBCwUw+1j57cxIPXEu5CaG9KyCZQSzLpFCx7zk2mKsPatnHc8ucaDCxBRJnkT9ZfVg5V8ac4wqwqfzmoiNUpHQZ1V0pWHdH9iPChMW1+cYmCmxOMDscE5vx4E4aTKySFgfsZQRwDhMm1zm7WPiUNPy2rez5GAhNLKIGhBV3+6DFYdaitrNDet68uvthaRbrzOrhJ8WUAvW2qCnqPJ3FUecOoJCrTxpthIBjsA9EXFaly70DeINdTY6TM5Jyv8OzLTG3xYPlL6OgFoFPKG90pQLVvAgI4pSccERFOqcf57wuxymQWy2aHLjLMyeX+s="
+
+jdk:
+- oraclejdk8
+
 script:
-  - jdk_switcher use openjdk10
-  - # do stuff with OpenJDK 10
-  - export JAVA_HOME=$HOME/openjdk11
-  - $TRAVIS_BUILD_DIR/install-jdk.sh --install openjdk11 --target $JAVA_HOME
-  - # do stuff with open OpenJDK 11
+# JaCoCo is used to have code coverage, "-Pcoverage" activates the maven profile in the pom.xml
+- mvn clean verify sonar:sonar -Pcoverage
 
-# Start: Build Lifecycle
+cache:
+  directories:
+  - '$HOME/.m2/repository'
+  - '$HOME/.sonar/cache'
 
 
-# End: Build LifeCycle
+  travis encrypt 3b9dbe0137bf7436e9e8a0d14916f06243af00f3
+
